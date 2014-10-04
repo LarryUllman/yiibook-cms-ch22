@@ -9,4 +9,7 @@ History:
 	Created empty directory
 	Git init
 	Created standard Yii shell
+	change permissions on models/views/controllers folders
 	Created database
+	edited configuration
+	used gii to generate models and crud
