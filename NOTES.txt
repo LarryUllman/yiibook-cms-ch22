@@ -4,3 +4,9 @@ Differences from previous:
 	Created new user roles: author, editor, admin
 	use password_hash
 	no files
+
+History:
+	Created empty directory
+	Git init
+	Created standard Yii shell
+	Created database
