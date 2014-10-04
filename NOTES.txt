@@ -1,0 +1,6 @@
+Differences from previous:
+
+	Anyone can commment
+	Created new user roles: author, editor, admin
+	use password_hash
+	no files
