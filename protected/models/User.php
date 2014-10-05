@@ -16,6 +16,7 @@
  */
 class User extends CActiveRecord
 {
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -32,14 +33,34 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, email, type, date_entered', 'required'),
+
+			// Required fields when registering:
+			array('username, email, pass', 'required', 'on'=>'insert'),
+
+			// Required fields when registering:
+			array('username, email, pass', 'required', 'on'=>'insert'),
+
+			// Username must be unique and less than 45 characters:
+			array('email, username', 'unique'),
 			array('username', 'length', 'max'=>45),
+
+			// Email address must also be unique (see above), an email address, and less than 60 characters:
+			array('email', 'email'),
 			array('email', 'length', 'max'=>60),
-			array('pass', 'length', 'max'=>255),
-			array('type', 'length', 'max'=>6),
+
+			// Set the type to "author" by default:
+			array('type', 'default', 'value'=>'author'),
+
+			// Type must also be one of three values:
+			array('type', 'in', 'range'=>array('author', 'editor', 'admin')),
+
+			// Set the date_entered to NOW():
+			array('date_entered', 'default', 'value'=>new CDbExpression('NOW()'),
+				'on'=>'insert'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, email, pass, type, date_entered', 'safe', 'on'=>'search'),
+			array('username, email, type, date_entered', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +85,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'username' => 'Username',
 			'email' => 'Email',
-			'pass' => 'Pass',
+			'pass' => 'Password',
 			'type' => 'Type',
 			'date_entered' => 'Date Entered',
 		);
