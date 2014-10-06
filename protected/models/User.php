@@ -37,6 +37,9 @@ class User extends CActiveRecord
 			// Required fields when registering:
 			array('username, email, pass', 'required', 'on'=>'insert'),
 
+			// Encrypt the password on insert:
+			array('pass', 'encryptPassword', 'on'=>'insert'),
+
 			// Username must be unique and less than 45 characters:
 			array('email, username', 'unique'),
 			array('username', 'length', 'max'=>45),
@@ -127,5 +130,10 @@ class User extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function encryptPassword($attr, $params)
+	{
+		$this->pass = password_hash($this->pass, PASSWORD_DEFAULT);
 	}
 }
