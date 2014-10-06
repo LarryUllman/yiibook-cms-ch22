@@ -32,13 +32,28 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('page_id, username, user_email, comment, date_entered', 'required'),
-			array('page_id', 'length', 'max'=>10),
+			// Required attributes (by the user):
+			array('username, user_email, comment', 'required'),
+
+			// Must be in related tables:
+			array('page_id', 'exist'),
+
+			// Strip tags from the comments:
+			array('comment', 'filter', 'filter'=>'strip_tags'),
+
+			// Set the date_entered to NOW():
+			array('date_entered', 'default', 'value'=>new CDbExpression('NOW()'), 'on'=>'insert'),
+
+			// Username limited to 45:
 			array('username', 'length', 'max'=>45),
+
+			// Email limited to 60 and must be an email address:
 			array('user_email', 'length', 'max'=>60),
+			array('user_email', 'email'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, page_id, username, user_email, comment, date_entered', 'safe', 'on'=>'search'),
+			array('page_id, username, user_email, comment, date_entered', 'safe', 'on'=>'search'),
 		);
 	}
 
