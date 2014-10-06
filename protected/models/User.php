@@ -37,9 +37,6 @@ class User extends CActiveRecord
 			// Required fields when registering:
 			array('username, email, pass', 'required', 'on'=>'insert'),
 
-			// Required fields when registering:
-			array('username, email, pass', 'required', 'on'=>'insert'),
-
 			// Username must be unique and less than 45 characters:
 			array('email, username', 'unique'),
 			array('username', 'length', 'max'=>45),
