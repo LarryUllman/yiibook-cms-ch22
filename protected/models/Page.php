@@ -34,14 +34,32 @@ class Page extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, title', 'required'),
-			array('live', 'numerical', 'integerOnly'=>true),
-			array('user_id', 'length', 'max'=>10),
+			// Only the title is required from the user:
+			array('title', 'required'),
+
+			// User must exist in the related table:
+			array('user_id', 'exist'),
+
+			// Live needs to be Boolean; default 0:
+			array('live', 'boolean'),
+			array('live', 'default', 'value'=>0),
+
+			// Title has a max length and strip tags:
 			array('title', 'length', 'max'=>100),
-			array('content, date_updated, date_published', 'safe'),
+			array('title', 'filter', 'filter'=>'strip_tags'),
+
+			// Filter the content to allow for NULL values:
+			array('content', 'default', 'value'=>NULL),
+
+			// Set the date_updated to NOW() every time:
+			array('date_updated', 'default', 'value'=>new CDbExpression('NOW()')),
+
+			// date_published must be in a format that MySQL likes:
+			array('date_published', 'date', 'format'=>'YYYY-MM-DD'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, live, title, content, date_updated, date_published', 'safe', 'on'=>'search'),
+			array('user_id, live, title, content, date_updated, date_published', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,7 +83,7 @@ class Page extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
+			'user_id' => 'Author',
 			'live' => 'Live',
 			'title' => 'Title',
 			'content' => 'Content',
