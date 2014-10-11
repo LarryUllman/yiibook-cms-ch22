@@ -8,7 +8,7 @@
 class LoginForm extends CFormModel
 {
 	public $email;
-	public $password;
+	public $pass;
 	private $_identity;
 
 	/**
@@ -21,13 +21,13 @@ class LoginForm extends CFormModel
 		return array(
 
 			// email and password are required
-			array('email, password', 'required'),
+			array('email, pass', 'required'),
 
 			// emai needs to be an email address:
 			array('email', 'email'),
 
 			// password needs to be authenticated
-			array('password', 'authenticate'),
+			array('pass', 'authenticate'),
 		);
 	}
 
@@ -49,9 +49,9 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			$this->_identity=new UserIdentity($this->email,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->pass);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect email address or password.');
+				$this->addError('pass','Incorrect email address or password.');
 		}
 	}
 
@@ -63,7 +63,7 @@ class LoginForm extends CFormModel
 	{
 		if($this->_identity===null)
 		{
-			$this->_identity=new UserIdentity($this->email,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->pass);
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)

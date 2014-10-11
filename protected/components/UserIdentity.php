@@ -23,7 +23,7 @@ class UserIdentity extends CUserIdentity
 		if ($user === null) {
 		    // No user found!
 		    $this->errorCode=self::ERROR_USERNAME_INVALID;
-		} else if (password_verify($this->password, $user->pass) {
+		} elseif (!password_verify($this->password, $user->pass)) {
 		    // Invalid password!
 		    $this->errorCode=self::ERROR_PASSWORD_INVALID;
 		} else { // Okay!
