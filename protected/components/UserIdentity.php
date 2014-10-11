@@ -35,6 +35,9 @@ class UserIdentity extends CUserIdentity
 		    // Store the user ID:
 		    $this->_id = $user->id;
 
+		    // Store the username in the session:
+		    $this->username = $user->username;
+
 		}
 		return !$this->errorCode;
 	}

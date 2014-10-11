@@ -60,7 +60,7 @@ class User extends CActiveRecord
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('username, email, type, date_entered', 'safe', 'on'=>'search'),
+			array('id,username, email, type, date_entered', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,7 +87,7 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'pass' => 'Password',
 			'type' => 'Type',
-			'date_entered' => 'Date Entered',
+			'date_entered' => 'User Since',
 		);
 	}
 
@@ -135,5 +135,12 @@ class User extends CActiveRecord
 	public function encryptPassword($attr, $params)
 	{
 		$this->pass = password_hash($this->pass, PASSWORD_DEFAULT);
+	}
+
+	public function afterFind()
+	{
+		$this->date_entered = DateTime::createFromFormat('Y-m-d H:i:s', $this->date_entered)->format('M j, Y');
+
+		parent::afterFind();
 	}
 }
