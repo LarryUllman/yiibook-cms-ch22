@@ -37,7 +37,8 @@ class PageController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
+				'expression'=>'isset(Yii::app()->user->type) && (Yii::app()->user->type == "admin")'
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
