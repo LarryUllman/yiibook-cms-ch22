@@ -16,17 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Page #<?php echo $model->id; ?></h1>
+<h1><?php echo CHtml::encode($model->title); ?></h1>
+<p>By <?php echo $model->user->username; ?> | <?php echo CHtml::encode($model->date_published); ?></p>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'user_id',
-		'live',
-		'title',
-		'content',
-		'date_updated',
-		'date_published',
-	),
-)); ?>
+<?php echo $model->content; ?>
