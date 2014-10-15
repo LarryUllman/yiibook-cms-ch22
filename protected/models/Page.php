@@ -38,7 +38,7 @@ class Page extends CActiveRecord
 			array('title', 'required'),
 
 			// User must exist in the related table:
-			array('user_id', 'exist'),
+			array('user_id', 'exist', 'attributeName'=>'id', 'className'=>'User', 'message'=>'The specified author does not exist.'),
 
 			// Live needs to be Boolean; default 0:
 			array('live', 'boolean'),
@@ -55,13 +55,23 @@ class Page extends CActiveRecord
 			array('date_updated', 'default', 'value'=>new CDbExpression('NOW()')),
 
 			// date_published must be in a format that MySQL likes:
-			array('date_published', 'date', 'format'=>'YYYY-MM-DD'),
+//			array('date_published', 'date', 'format'=>'YYYY-MM-DD'),
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('user_id, live, title, content, date_updated, date_published', 'safe', 'on'=>'search'),
 		);
 	}
+
+
+	// Set the user_id value to the current user, if it's not empty:
+	protected function beforeValidate() {
+		if(empty($this->user_id)) {
+			$this->user_id = Yii::app()->user->id;
+		}
+		return parent::beforeValidate();
+	}
+
 
 	/**
 	 * @return array relational rules.
