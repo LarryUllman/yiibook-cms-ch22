@@ -53,4 +53,6 @@ $this->menu=array(
 		'itemView'=>'/comment/_view',
 	)); ?>
 
+<?php else: ?>
+	<h3>Be the first to comment on this page!</h3>
 <?php endif; ?>
