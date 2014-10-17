@@ -52,8 +52,15 @@ class PageController extends Controller
 	 */
 	public function actionView($id)
 	{
+
+		$page = $this->loadModel($id);
+
+		// Comment approach stolen from Yii blog example!
+		$comment = $this->newComment($page);
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$page,
+			'comment'=>$comment
 		));
 	}
 
@@ -143,6 +150,37 @@ class PageController extends Controller
 			'model'=>$model,
 		));
 	}
+
+	/**
+	 * Creates a new comment.
+	 * Completely cribbed from Yii blog example!
+	 * This method attempts to create a new comment based on the user input.
+	 * If the comment is successfully created, the browser will be redirected
+	 * to show the created comment.
+	 * @param Page the page that the new comment belongs to
+	 * @return Comment the comment instance
+	 */
+	protected function newComment($page)
+	{
+		$comment=new Comment;
+		$comment->page_id = $page->id;
+		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+		{
+			echo CActiveForm::validate($comment);
+			Yii::app()->end();
+		}
+		if(isset($_POST['Comment']))
+		{
+			$comment->attributes=$_POST['Comment'];
+			if($comment->save())
+			{
+				Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment.');
+				$this->refresh();
+			}
+		}
+		return $comment;
+	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
