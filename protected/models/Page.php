@@ -83,6 +83,9 @@ class Page extends CActiveRecord
 		return array(
 			'comments' => array(self::HAS_MANY, 'Comment', 'page_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+
+			// commentCount stolen from Yii blog example:
+			'commentCount' => array(self::STAT, 'Comment', 'page_id'),
 		);
 	}
 

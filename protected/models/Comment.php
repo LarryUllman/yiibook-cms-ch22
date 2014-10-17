@@ -77,8 +77,8 @@ class Comment extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'page_id' => 'Page',
-			'username' => 'Username',
-			'user_email' => 'User Email',
+			'username' => 'Name',
+			'user_email' => 'Email',
 			'comment' => 'Comment',
 			'date_entered' => 'Date Entered',
 		);

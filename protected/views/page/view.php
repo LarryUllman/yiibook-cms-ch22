@@ -34,3 +34,23 @@ $this->menu=array(
 		'model'=>$comment,
 	)); ?>
 <?php endif; ?>
+
+<?php if ($model->commentCount >= 1): ?>
+	<h3><?php echo $model->commentCount>1 ? $model->commentCount . ' comments' : 'One comment'; ?></h3>
+
+	<?php $this->widget('zii.widgets.CListView', array(
+		'dataProvider' => new CActiveDataProvider('Comment',
+			array(
+				'criteria' => array(
+					'condition' => 'page_id=' . $model->id,
+					'order' => 'date_entered DESC'
+					),
+				'pagination' => array(
+					'pageSize'=>20
+				)
+			)
+		),
+		'itemView'=>'/comment/_view',
+	)); ?>
+
+<?php endif; ?>
