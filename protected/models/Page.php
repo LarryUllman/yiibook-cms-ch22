@@ -105,6 +105,11 @@ class Page extends CActiveRecord
 		);
 	}
 
+	public function getSnippet()
+	{
+		return substr($this->content, 0, strpos($this->content, '.'));
+	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *

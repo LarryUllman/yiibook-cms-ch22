@@ -3,35 +3,10 @@
 /* @var $data Page */
 ?>
 
-<div class="view">
+<div class="blog-post">
+    <h2 class="blog-post-title"><?php echo CHtml::link(CHtml::encode($data->title), array('/page/view', 'id'=>$data->id)); ?></h2>
+	<p class="blog-post-meta">By <?php echo $data->user->username; ?> | <?php echo CHtml::encode($data->date_published); ?></p>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
+	<?php echo $data->getSnippet(); ?>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('live')); ?>:</b>
-	<?php echo CHtml::encode($data->live); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-	<?php echo CHtml::encode($data->title); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>
-	<?php echo CHtml::encode($data->content); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_updated')); ?>:</b>
-	<?php echo CHtml::encode($data->date_updated); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_published')); ?>:</b>
-	<?php echo CHtml::encode($data->date_published); ?>
-	<br />
-
-
-</div>
+</div><!-- /.blog-post -->

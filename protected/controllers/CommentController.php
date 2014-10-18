@@ -27,12 +27,8 @@ class CommentController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index', 'create', and 'view' actions
-				'actions'=>array('index','create','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow admin user to perform 'update', 'admin', and 'delete' actions
-				'actions'=>array('update','admin','delete'),
+			array('allow', // allow only admin user to do anything with comments here
+				'actions'=>array('index','create','view','update','admin','delete'),
 				'users'=>array('@'),
 				'expression'=>'isset(Yii::app()->user->type) && (Yii::app()->user->type == "admin")'
 			),

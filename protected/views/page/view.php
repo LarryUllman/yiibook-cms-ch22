@@ -18,10 +18,13 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo CHtml::encode($model->title); ?></h1>
-<p>By <?php echo $model->user->username; ?> | <?php echo CHtml::encode($model->date_published); ?></p>
+<div class="blog-post">
+    <h2 class="blog-post-title"><?php echo CHtml::encode($model->title); ?></h2>
+	<p class="blog-post-meta">By <?php echo $model->user->username; ?> | <?php echo CHtml::encode($model->date_published); ?></p>
 
-<?php echo $model->content; ?>
+	<?php echo $model->content; ?>
+
+</div><!-- /.blog-post -->
 
 <h3>Leave a Comment</h3>
 
@@ -56,3 +59,4 @@ $this->menu=array(
 <?php else: ?>
 	<h3>Be the first to comment on this page!</h3>
 <?php endif; ?>
+
