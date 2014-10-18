@@ -18,31 +18,29 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model, '', '', array('class' => 'text-warning')); ?>
 
 		<?php echo $form->hiddenField($model,'page_id',array('size'=>10,'maxlength'=>10)); ?>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'username',array('size'=>45,'maxlength'=>45,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'username'); ?>
-	</div>
+  </div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'user_email'); ?>
-		<?php echo $form->textField($model,'user_email',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->textField($model,'user_email',array('size'=>60,'maxlength'=>60,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'user_email'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'comment'); ?>
-		<?php echo $form->textArea($model,'comment',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'comment',array('rows'=>6,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'comment'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Post Comment' : 'Save'); ?>
-	</div>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Post Comment' : 'Save', array('class' => 'btn btn-default')); ?>
 
 <?php $this->endWidget(); ?>
 

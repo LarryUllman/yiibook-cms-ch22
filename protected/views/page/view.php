@@ -22,24 +22,27 @@ $this->menu=array(
     <h2 class="blog-post-title"><?php echo CHtml::encode($model->title); ?></h2>
 	<p class="blog-post-meta">By <?php echo $model->user->username; ?> | <?php echo CHtml::encode($model->date_published); ?></p>
 
-	<?php echo $model->content; ?>
+	<p><?php echo $model->content; ?></p>
+
+	<br>
 
 </div><!-- /.blog-post -->
-
+<div class="blog-post">
 <h3>Leave a Comment</h3>
 
 <?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
-	<div class="flash-success">
+	<p class="text-success">
 		<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
-	</div>
+	</p>
 <?php else: ?>
 	<?php $this->renderPartial('/comment/_form',array(
 		'model'=>$comment,
 	)); ?>
 <?php endif; ?>
-
+</div><!-- /.blog-post -->
+<div class="blog-post">
 <?php if ($model->commentCount >= 1): ?>
-	<h3><?php echo $model->commentCount>1 ? $model->commentCount . ' comments' : 'One comment'; ?></h3>
+	<h3><?php echo $model->commentCount>1 ? $model->commentCount . ' Comments' : 'One Comment'; ?></h3>
 
 	<?php $this->widget('zii.widgets.CListView', array(
 		'dataProvider' => new CActiveDataProvider('Comment',
@@ -54,9 +57,12 @@ $this->menu=array(
 			)
 		),
 		'itemView'=>'/comment/_view',
+		'template'=>'{items}{pager}'
 	)); ?>
 
 <?php else: ?>
 	<h3>Be the first to comment on this page!</h3>
 <?php endif; ?>
+
+</div><!-- /.blog-post -->
 

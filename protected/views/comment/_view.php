@@ -2,7 +2,7 @@
 /* @var $this CommentController */
 /* @var $data Comment */
 ?>
-
+<hr>
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('username')); ?>:</b>
