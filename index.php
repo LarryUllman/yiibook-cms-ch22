@@ -10,4 +10,9 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
-Yii::createWebApplication($config)->run();
+$app = Yii::createWebApplication($config);
+
+$composer = dirname(__FILE__).'/protected/vendor/autoload.php';
+require_once($composer);
+
+$app->run();
