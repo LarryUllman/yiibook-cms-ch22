@@ -19,19 +19,19 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'title',array('maxlength'=>100,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>20, 'cols'=>100)); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>6,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'date_published'); ?>
 		<?php
 		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -40,6 +40,7 @@
 		    'htmlOptions' => array(
 		        'size' => '10',         // textField size
 		        'maxlength' => '10',    // textField maxlength
+		        'class' => 'form-control'
 		    ),
 		    'options' => array(
 		    	'dateFormat' => 'yy-mm-dd',
@@ -53,15 +54,13 @@
 		<?php echo $form->error($model,'date_published'); ?>
 	</div>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'live'); ?>
-		<?php echo $form->checkBox($model,'live'); ?>
+		<?php echo $form->checkBox($model,'live', array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'live'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-default')); ?>
 
 <?php $this->endWidget(); ?>
 

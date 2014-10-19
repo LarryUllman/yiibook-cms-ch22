@@ -20,17 +20,15 @@
 
 	<?php echo $form->errorSummary($model, '', '', array('class' => 'text-warning')); ?>
 
-		<?php echo $form->hiddenField($model,'page_id',array('size'=>10,'maxlength'=>10)); ?>
-
   <div class="form-group">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>45,'maxlength'=>45,'class'=>'form-control')); ?>
+		<?php echo $form->textField($model,'username',array('maxlength'=>45,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'username'); ?>
   </div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'user_email'); ?>
-		<?php echo $form->textField($model,'user_email',array('size'=>60,'maxlength'=>60,'class'=>'form-control')); ?>
+		<?php echo $form->textField($model,'user_email',array('maxlength'=>60,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'user_email'); ?>
 	</div>
 

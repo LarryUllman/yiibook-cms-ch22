@@ -19,27 +19,25 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'username',array('maxlength'=>45,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'username'); ?>
-	</div>
+  </div>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->textField($model,'email',array('maxlength'=>60,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
-	<div class="row">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'pass'); ?>
-		<?php echo $form->passwordField($model,'pass',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->passwordField($model,'pass',array('maxlength'=>255,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'pass'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+	<?php echo CHtml::submitButton($model->isNewRecord ? 'Register' : 'Update', array('class' => 'btn btn-default')); ?>
 
 <?php $this->endWidget(); ?>
 
