@@ -55,7 +55,7 @@ class Page extends CActiveRecord
 			array('date_updated', 'default', 'value'=>new CDbExpression('NOW()')),
 
 			// date_published must be in a format that MySQL likes:
-//			array('date_published', 'date', 'format'=>'YYYY-MM-DD'),
+			array('date_published', 'date', 'format'=>'yyyy-MM-dd'),
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -63,16 +63,15 @@ class Page extends CActiveRecord
 		);
 	}
 
-   	protected function afterFind()
+   	protected function formattedDate()
     {
     	// From http://stackoverflow.com/questions/6811706/yii-how-to-change-datetime-format-displayed-on-the-view
         // convert to display format
         // Date published can be null!
         if ($this->date_published) {
-        	$this->date_published = DateTime::createFromFormat('Y-m-d', $this->date_published)->format('M. d, Y');
+        	return DateTime::createFromFormat('Y-m-d', $this->date_published)->format('M. d, Y');
         }
 
-        parent::afterFind();
     }
 
 	// Set the user_id value to the current user, if it's not empty:

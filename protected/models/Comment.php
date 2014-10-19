@@ -84,11 +84,11 @@ class Comment extends CActiveRecord
 		);
 	}
 
-   	protected function afterFind()
+   	protected function formattedDate()
     {
     	// From: http://stackoverflow.com/questions/6811706/yii-how-to-change-datetime-format-displayed-on-the-view
         // convert to display format
-        $this->date_entered = DateTime::createFromFormat('Y-m-d H:i:s', $this->date_entered)->format('M. d, Y');
+        return DateTime::createFromFormat('Y-m-d H:i:s', $this->date_entered)->format('M. d, Y');
 
         parent::afterFind();
     }
