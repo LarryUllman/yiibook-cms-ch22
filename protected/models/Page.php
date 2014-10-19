@@ -67,7 +67,10 @@ class Page extends CActiveRecord
     {
     	// From http://stackoverflow.com/questions/6811706/yii-how-to-change-datetime-format-displayed-on-the-view
         // convert to display format
-        $this->date_published = DateTime::createFromFormat('Y-m-d', $this->date_published)->format('M. d, Y');
+        // Date published can be null!
+        if ($this->date_published) {
+        	$this->date_published = DateTime::createFromFormat('Y-m-d', $this->date_published)->format('M. d, Y');
+        }
 
         parent::afterFind();
     }

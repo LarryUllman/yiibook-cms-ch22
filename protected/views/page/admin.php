@@ -46,10 +46,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'user_id',
-		'live',
+		'user.username',
+		array(
+			'header' => 'Live?',
+			'filter' => CHtml::dropDownList('Page[live]', $model->live, array('0' => 'Draft', '1' => 'Live'), array('empty' => '(Select)')),
+			'value' => '($data->live == 1) ? "Live" : "Draft"'
+		),
 		'title',
-		'content',
+		array(
+			'header' => 'Preview',
+			'value' => '$data->getSnippet()'
+		),
 		'date_updated',
 		/*
 		'date_published',

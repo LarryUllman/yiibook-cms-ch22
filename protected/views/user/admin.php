@@ -48,7 +48,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'username',
 		'email',
-		'type',
+		array(
+			'value' => 'ucfirst($data->type)',
+			'filter' => CHtml::dropDownList('User[type]', $model->type, array('author' => 'Author', 'editor' => 'Editor', 'admin' => 'Admin'), array('empty' => '(Select)'))
+		),
 		'date_entered',
 		array(
 			'class'=>'CButtonColumn',
