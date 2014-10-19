@@ -84,7 +84,7 @@ class Comment extends CActiveRecord
 		);
 	}
 
-   	protected function formattedDate()
+   	public function formattedDate()
     {
     	// From: http://stackoverflow.com/questions/6811706/yii-how-to-change-datetime-format-displayed-on-the-view
         // convert to display format

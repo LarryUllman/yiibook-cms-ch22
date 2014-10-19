@@ -137,10 +137,9 @@ class User extends CActiveRecord
 		$this->pass = password_hash($this->pass, PASSWORD_DEFAULT);
 	}
 
-	public function afterFind()
+	public function formattedDate()
 	{
-		$this->date_entered = DateTime::createFromFormat('Y-m-d H:i:s', $this->date_entered)->format('M j, Y');
+		return DateTime::createFromFormat('Y-m-d H:i:s', $this->date_entered)->format('M j, Y');
 
-		parent::afterFind();
 	}
 }
