@@ -38,6 +38,7 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			'email'=>'Email Address',
+			'pass' => 'Password'
 		);
 	}
 

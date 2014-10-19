@@ -30,6 +30,11 @@ return array(
 
 	// application components
 	'components'=>array(
+		'clientScript' => array(
+			'scriptMap' => array(
+				'jquery.js'=> 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+			),
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>false,
