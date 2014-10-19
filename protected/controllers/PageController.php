@@ -94,7 +94,13 @@ class PageController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+
 		$model=$this->loadModel($id);
+
+		// Only an author of the page, or an editor, or an admin can update!
+		if ((Yii::app()->user->type == 'author') && (Yii::app()->user->id != $model->user_id)) {
+			throw new CHttpException(403, 'You do not have permission to edit this page.');
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
