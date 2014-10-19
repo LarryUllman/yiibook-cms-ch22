@@ -38,7 +38,13 @@
           <a class="blog-nav-item active" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php">Home</a>
           <a class="blog-nav-item" href="#">About</a>
           <a class="blog-nav-item" href="#">Contact</a>
-          <a class="blog-nav-item" href="#">Login</a>
+<?php // Toggle login/logout
+if (Yii::app()->user->isGuest) {
+  echo CHtml::link('Login', array('/site/login'), array('class'=>"blog-nav-item"));
+} else {
+  echo CHtml::link('Logout (' . Yii::app()->user->name . ')', array('/site/logout'), array('class'=>"blog-nav-item"));
+}
+?>
         </nav>
       </div>
     </div>
