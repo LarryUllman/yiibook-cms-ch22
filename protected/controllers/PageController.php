@@ -27,8 +27,8 @@ class PageController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+			array('allow',  // allow all users to perform 'index' and 'view' and 'archives' actions
+				'actions'=>array('index','view','archives'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -142,6 +142,34 @@ class PageController extends Controller
 		));
 	}
 
+	/**
+	 * Lists all models for a given month
+	 */
+	public function actionArchives($year, $month)
+	{
+		$criteria=new CDbCriteria();
+		$criteria->addCondition('live=1');
+
+		if(filter_var($year, FILTER_VALIDATE_INT, array('min_range'=>2014))) {
+			$y = new CDbExpression('YEAR(date_published)');
+			$criteria->addCondition("$y=$year");
+		}
+		if(filter_var($month, FILTER_VALIDATE_INT, array('min_range'=>1, 'max_range'=>12))) {
+			$m = new CDbExpression('MONTH(date_published)');
+			$criteria->addCondition("$m=$month");
+		}
+
+		$dataProvider=new CActiveDataProvider('Page',
+			array(
+				'criteria' => $criteria
+			)
+		);
+		$this->render('archives',array(
+			'dataProvider'=>$dataProvider,
+			'month' => $month,
+			'year' => $year
+		));
+	}
 	/**
 	 * Manages all models.
 	 */

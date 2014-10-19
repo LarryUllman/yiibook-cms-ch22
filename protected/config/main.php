@@ -46,6 +46,7 @@ return array(
 				'<controller:\w+>/<id:\d+>/<title:.*?>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'page/archives/<year:\d+>/<month:\d+>'=>'page/index',
 			),
 		),
 		// uncomment the following to use a MySQL database
