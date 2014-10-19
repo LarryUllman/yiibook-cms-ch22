@@ -33,7 +33,23 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_published'); ?>
-		<?php echo $form->textField($model,'date_published'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+		    'model' => $model,
+		    'attribute' => 'date_published',
+		    'htmlOptions' => array(
+		        'size' => '10',         // textField size
+		        'maxlength' => '10',    // textField maxlength
+		    ),
+		    'options' => array(
+		    	'dateFormat' => 'yy-mm-dd',
+		    	'showOtherMonths' => true,
+		    	'selectOtherMonths' => true,
+		    	'changeYear' => true,
+		    	'changeMonth' => true
+		    )
+		));
+		?>
 		<?php echo $form->error($model,'date_published'); ?>
 	</div>
 
