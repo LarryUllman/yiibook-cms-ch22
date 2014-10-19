@@ -63,6 +63,14 @@ class Page extends CActiveRecord
 		);
 	}
 
+   	protected function afterFind()
+    {
+    	// From http://stackoverflow.com/questions/6811706/yii-how-to-change-datetime-format-displayed-on-the-view
+        // convert to display format
+        $this->date_published = DateTime::createFromFormat('Y-m-d', $this->date_published)->format('M. d, Y');
+
+        parent::afterFind();
+    }
 
 	// Set the user_id value to the current user, if it's not empty:
 	protected function beforeValidate() {
@@ -107,7 +115,20 @@ class Page extends CActiveRecord
 
 	public function getSnippet()
 	{
-		return substr($this->content, 0, strpos($this->content, '.'));
+		// From: http://stackoverflow.com/questions/4692047/php-get-first-two-sentences-of-a-text
+		$sentencesToDisplay = 3;
+		$nakedBody = preg_replace('/\s+/', ' ', strip_tags($this->content));
+	    $sentences = preg_split('/(\.|\?|\!)(\s)/',$nakedBody);
+	    $stopAt = 0;
+	    foreach ($sentences as $i => $sentence) {
+	        $stopAt += strlen($sentence);
+
+	        if ($i >= $sentencesToDisplay - 1)
+	            break;
+	    }
+
+	    $stopAt += ($sentencesToDisplay * 2);
+	    return trim(substr($nakedBody, 0, $stopAt));
 	}
 
 	/**
