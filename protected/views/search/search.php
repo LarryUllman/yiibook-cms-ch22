@@ -21,7 +21,7 @@ foreach ($hits as $id => $hit) {
 
 	//print_r($hit);exit;
 
-	echo '<div><h3>' . CHtml::link($hit['title'], array('page/view', 'id'=>$id)) .'</h3>';
+	echo '<div><h3>' . CHtml::link($hit['title'], array('page/view', 'id'=>$id, 'title'=>$hit['title'])) .'</h3>';
 
 	// Old version for single highlight of "content":
 	// echo '<p>...' . $hit['highlight'] . '...</p>';

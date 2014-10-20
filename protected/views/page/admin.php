@@ -7,11 +7,6 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List Page', 'url'=>array('index')),
-	array('label'=>'Create Page', 'url'=>array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -46,7 +41,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'user.username',
+		array(
+			'header' => 'Author',
+			'name' => 'user_id',
+			'value' => '$data->user->username'
+		),
 		array(
 			'header' => 'Live?',
 			'filter' => CHtml::dropDownList('Page[live]', $model->live, array('0' => 'Draft', '1' => 'Live'), array('empty' => '(Select)')),
@@ -58,9 +57,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'value' => '$data->getSnippet()'
 		),
 		'date_updated',
-		/*
 		'date_published',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

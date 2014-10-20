@@ -7,11 +7,6 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -49,6 +44,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'username',
 		'email',
 		array(
+			'header'=>'Type',
 			'value' => 'ucfirst($data->type)',
 			'filter' => CHtml::dropDownList('User[type]', $model->type, array('author' => 'Author', 'editor' => 'Editor', 'admin' => 'Admin'), array('empty' => '(Select)'))
 		),

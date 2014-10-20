@@ -150,9 +150,10 @@ class Page extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = 'user';
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('user.username',$this->user_id,true);
 		$criteria->compare('live',$this->live);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);

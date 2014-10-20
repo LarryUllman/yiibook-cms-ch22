@@ -35,13 +35,20 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php">Home</a>
-          <a class="blog-nav-item" href="#">About</a>
-          <a class="blog-nav-item" href="#">Contact</a>
+          <a class="blog-nav-item" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php">Home</a>
 <?php // Toggle login/logout
 if (Yii::app()->user->isGuest) {
-  echo CHtml::link('Login', array('/site/login'), array('class'=>"blog-nav-item"));
+  echo '<a class="blog-nav-item" href="#">About</a>';
+  echo CHtml::link('Contact', array('/site/contact'), array('class'=>"blog-nav-item"));
+  echo CHtml::link('Author Login', array('/site/login'), array('class'=>"blog-nav-item"));
 } else {
+  echo CHtml::link('Create Page', array('/page/create'), array('class'=>"blog-nav-item"));
+  echo CHtml::link('List Pages', array('/page/admin'), array('class'=>"blog-nav-item"));
+  echo CHtml::link('List Comments', array('/comment/admin'), array('class'=>"blog-nav-item"));
+  if (Yii::app()->user->type == 'admin') {
+    echo CHtml::link('List Users', array('/user/admin'), array('class'=>"blog-nav-item"));
+  }
+  echo CHtml::link('My Info', array('/user/update', 'id'=>Yii::app()->user->id), array('class'=>"blog-nav-item"));
   echo CHtml::link('Logout (' . Yii::app()->user->name . ')', array('/site/logout'), array('class'=>"blog-nav-item"));
 }
 ?>

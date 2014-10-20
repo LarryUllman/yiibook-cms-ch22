@@ -31,12 +31,12 @@ class PageController extends Controller
 				'actions'=>array('index','view','archives'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' and 'admin' actions
+				'actions'=>array('create','update','admin'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+			array('allow', // allow admin user to perform and 'delete' actions
+				'actions'=>array('delete'),
 				'users'=>array('@'),
 				'expression'=>'isset(Yii::app()->user->type) && (Yii::app()->user->type == "admin")'
 			),

@@ -11,6 +11,8 @@ $this->breadcrumbs=array(
 
 <h1>Login</h1>
 
+<p>(Only site writers that have previously been asked to register can log in.)</p><hr>
+
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',

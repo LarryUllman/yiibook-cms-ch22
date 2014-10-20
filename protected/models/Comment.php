@@ -109,9 +109,9 @@ class Comment extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = 'page';
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('page_id',$this->page_id,true);
+		$criteria->compare('page.title',$this->page_id,true);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('user_email',$this->user_email,true);
 		$criteria->compare('comment',$this->comment,true);
