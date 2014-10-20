@@ -37,3 +37,7 @@ I will not be providing technical support for this code through GitHub. If there
 This is the penultimate chapter that I have to write, the other being Chapter 23, which is an e-commerce example. Chapter 24 is done. Next I'm going to do the code for Chapter 23 and release it. Then I'll write up the chapters and publish the final version of the first edition of the book. Then I start working on the second edition, for Yii 2.
 
 This code will be updated for Yii 2, for the second edition of "The Yii Book", and will be posted in a new repository (actually, it'll be made into an installable application via Composer).
+
+## What's with the Commits?
+
+Okay, so the commit history on this isn't pretty. My goal was to track, broadly, the steps I took to develop the project from scratch. The end result is commits that are way too big and occasionally not focused enough. So don't treat this commit history as a good model of using Git!
