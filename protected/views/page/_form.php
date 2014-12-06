@@ -25,12 +25,12 @@
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
-  <div class="form-group">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php echo $form->textArea($model,'content',array('rows'=>6,'class'=>'form-control')); ?>
 		<?php echo $form->error($model,'content'); ?>
 		<?php
-Yii::import('ext.imperavi-redactor-widget.ImperaviRedactorWidget');
+	Yii::import('ext.imperavi-redactor-widget.ImperaviRedactorWidget');
 		$this->widget('ImperaviRedactorWidget', array(
 		    'selector' => '#Page_content',
 		    // Some options, see http://imperavi.com/redactor/docs/

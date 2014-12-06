@@ -177,7 +177,7 @@ class SearchController extends Controller
 				"minimum_should_match": "75%"
 			}
 		},
-	    "highlight": {
+		"highlight": {
 			"fields": {
 				"content": {
 					"fragment_size": 300
@@ -190,7 +190,7 @@ class SearchController extends Controller
 				}
 			}
 		}
-	}';
+		}';
 
 		// Create the client:
 		$client = new Elasticsearch\Client();
@@ -206,9 +206,6 @@ class SearchController extends Controller
 		foreach ($results['hits']['hits'] as $hit) {
 			$id = $hit['_id'];
 			$hits[$id]['title'] = $hit['_source']['title'];
-
-			// Older version, only highlights "content" field:
-			//$hits[$id]['highlight'] = $hit['highlight']['content'][0];
 
 			// New version loops through "highlight":
 			foreach ($hit['highlight'] as $field => $h) {
